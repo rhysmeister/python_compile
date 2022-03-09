@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include python_compile"
+      include_role:
+        name: "python_compile"

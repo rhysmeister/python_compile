@@ -1,0 +1,23 @@
+---
+python_version: "3.7.12"
+python_src_url: "https://www.python.org/ftp/python/{{ python_version }}/Python-{{ python_version }}.tar.xz"
+python_root_parent: "/opt"
+python_root: "{{ python_root_parent }}/Python-{{ python_version }}"
+
+pre_build_packages:
+  - wget
+
+build_packages:
+  - build-essential 
+  - zlib1g-dev 
+  - libncurses5-dev
+  - libgdbm-dev
+  - libnss3-dev
+  - libssl-dev
+  - libsqlite3-dev
+  - libreadline-dev
+  - libffi-dev 
+  - curl
+  - libbz2-dev
+build_threads: 4
+make_install_method: altinstall

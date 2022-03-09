@@ -1,0 +1,19 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: bullseye
+    image: debian:bullseye
+    pre_build_image: true
+  - name: buster
+    image: debian:buster
+    pre_build_image: true
+  - name: stretch
+    image: debian:stretch
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

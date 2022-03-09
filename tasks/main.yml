@@ -1,0 +1,32 @@
+---
+- name: Ensure Pre-Build Script Packages are installed
+  package:
+    name: "{{ pre_build_packages }}"
+
+- name: Ensure build packages are installed
+  package:
+    name: "{{ build_packages }}"
+
+- name: Ensure python_root_parent exists
+  file:
+    path: "{{ python_root_parent }}"
+    state: directory
+
+- name: Copy get-pip.py script
+  copy:
+    src: get-pip.py
+    dest: "{{ python_root_parent }}"
+
+- name: Copy python build template
+  template:
+    src: install_python.sh.j2
+    dest: /root/install_python.sh
+    owner: root
+    group: root
+    mode: 0744
+
+- name: Install Python
+  command: ./install_python.sh
+  args:
+    chdir: /root
+    creates: "python{{ python_version }}.success"
