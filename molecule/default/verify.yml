@@ -1,10 +1,21 @@
 ---
-# This is an example playbook to execute Ansible tests.
-
 - name: Verify
   hosts: all
   gather_facts: false
+  vars_files:
+    - ../../defaults/main.yml
   tasks:
-  - name: Example assertion
+
+  - name: Get python version so we know the cmd to run
+    set_fact:
+      pv: "{{ python_version[0:3] }}"
+
+  - name: Check what the exact python version is
+    command: python{{ pv }} --version
+    register: python_version_output
+
+  - name: Check python version matches with what we expect
     assert:
-      that: true
+      that: python_version in python_version_output.stdout
+      success_msg: "Python version of python{{ pv }} is {{ python_version }}"
+      fail_msg: "The python version is not as expected: {{ python_version_output.stdout }} rather than {{ python_version }}"

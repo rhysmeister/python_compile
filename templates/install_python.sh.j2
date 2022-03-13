@@ -3,10 +3,10 @@
 set -e;
 
 # Install Python {{ python_version }}
-wget {{ python_src_url }} ;
+wget {{ python_src_url }};
 
 tar -xf Python-{{ python_version }}.tar.xz;
-mv Python-{{ python_version }} /opt/Python-{{ python_version }}
+mv Python-{{ python_version }} /opt/Python-{{ python_version }};
 
 cd {{ python_root }};
 ./configure --enable-optimizations --enable-shared;
@@ -16,6 +16,6 @@ ldconfig {{ python_root }};
 
 # Install pip for Python {{ python_version }}
 python{{ python_version[0:3] }} {{ python_root_parent }}/get-pip.py;
-python{{ python_version[0:3] }} -m pip install --upgrade pip
+python{{ python_version[0:3] }} -m pip install --upgrade pip;
 
-touch python{{ python_version }}.success
+touch python{{ python_version }}.success;

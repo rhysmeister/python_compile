@@ -29,4 +29,4 @@
   command: ./install_python.sh
   args:
     chdir: /root
-    creates: "python{{ python_version }}.success"
+    creates: "/opt/Python-{{ python_version }}/python{{ python_version }}.success"
