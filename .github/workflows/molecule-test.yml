@@ -32,7 +32,7 @@ jobs:
         run: sudo pip install pip --upgrade
 
       - name: Install requirements
-        run: sudo pip install molecule[docker] docker
+        run: sudo pip install -r requirements.txt
 
       - name: Debug
         run: python --version && pip --version
