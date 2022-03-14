@@ -27,12 +27,18 @@ jobs:
 
       - name: Upgrade pip and install requirements
         run: |
+          virtualenv venv
+          source venv/bin/activate
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements.txt
 
       - name: Debug
-        run: python --version && pip --version
+        run: |
+          source venv/bin/activate 
+          python --version && pip --version
 
       - name: Run molecule test
-        run: molecule test
+        run: |
+          source venv/bin/activate 
+          molecule test
 
