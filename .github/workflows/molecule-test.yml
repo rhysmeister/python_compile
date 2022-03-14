@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         base_python:
-          - "3.9"
+          - "3.8"
     defaults:
       run:
         working-directory: ./python_compile
