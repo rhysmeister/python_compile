@@ -31,6 +31,9 @@ jobs:
       - name: Install requirements
         run: pip install -r requirements.txt
 
+      - name: Debug
+        run: python --version && pip --version
+
       - name: Run molecule test
         run: molecule test
 
