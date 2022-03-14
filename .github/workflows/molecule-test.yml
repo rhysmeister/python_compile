@@ -29,7 +29,7 @@ jobs:
         run: sudo apt remove ansible
 
       - name: Install requirements
-        run: sudo pip install -r molecule[docker] docker
+        run: sudo pip install molecule[docker] docker
 
       - name: Debug
         run: python --version && pip --version
