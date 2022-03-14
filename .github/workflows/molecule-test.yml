@@ -25,8 +25,21 @@ jobs:
         with:
           python-version: ${{ matrix.base_python }}
 
+      - name: Uninstall existing ansible
+        run: sudo apt remove ansible
+
+      - name: Install required packages
+        run: sudo apt install python3-testresources
+
+      - name: Upgrade pip
+        run: sudo pip install pip --upgrade
+
+      - name: Install requirements
+        run: sudo pip install -r requirements.txt
+
+      - name: Debug
+        run: python --version && pip --version
+
       - name: Run molecule test
-        uses: gofrolist/molecule-action@v2
-        with:
-          molecule_command: test
+        run: molecule test
 
