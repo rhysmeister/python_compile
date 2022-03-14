@@ -20,16 +20,15 @@ jobs:
         with:
           path: ./python_compile
 
-      #- name: Set up Python ${{ matrix.base_python }}
-      #  uses: actions/setup-python@v1
-      #  with:
-      #    python-version: ${{ matrix.base_python }}
+      - name: Set up Python ${{ matrix.base_python }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.base_python }}
 
       - name: Upgrade pip and install requirements
         run: |
           python3 -m venv ./venv
           source venv/bin/activate
-          pip uninstall docker docker-py requests
           python3 -m pip install --upgrade pip
           python3 -m pip install wheel
           python3 -m pip install -r requirements.txt
@@ -37,7 +36,7 @@ jobs:
       - name: Debug
         run: |
           source venv/bin/activate 
-          python --version && pip --version
+          python3 --version && pip --version
           pip freeze
 
       - name: Run molecule test
