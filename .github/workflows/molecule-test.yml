@@ -25,6 +25,9 @@ jobs:
       #  with:
       #    python-version: ${{ matrix.base_python }}
 
+      - name: Ensure no old pip libraries exist
+        run: sudo pip uninstall docker docker-py requests
+
       - name: Upgrade pip and install requirements
         run: |
           python3 -m venv ./venv
