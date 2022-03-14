@@ -20,10 +20,10 @@ jobs:
         with:
           path: ./python_compile
 
-      - name: Set up Python ${{ matrix.base_python }}
-        uses: actions/setup-python@v1
-        with:
-          python-version: ${{ matrix.base_python }}
+      #- name: Set up Python ${{ matrix.base_python }}
+      #  uses: actions/setup-python@v1
+      #  with:
+      #    python-version: ${{ matrix.base_python }}
 
       - name: Upgrade pip and install requirements
         run: |
@@ -37,6 +37,7 @@ jobs:
         run: |
           source venv/bin/activate 
           python --version && pip --version
+          pip freeze
 
       - name: Run molecule test
         run: |
