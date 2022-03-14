@@ -28,6 +28,9 @@ jobs:
       - name: Uninstall existing ansible
         run: sudo apt remove ansible
 
+      - name: Install required packages
+        run: sudo apt install python3-testresources
+
       - name: Upgrade pip
         run: sudo pip install pip --upgrade
 
