@@ -11,6 +11,9 @@ jobs:
       matrix:
         base_python:
           - "3.9"
+    defaults:
+      run:
+        working-directory: ./python_compile
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -27,11 +30,7 @@ jobs:
 
       - name: Install requirements
         run: pip install -r requirements.txt
-        with:
-          path: ./python_compile
 
       - name: Run molecule test
-        run: molecule test
-        with:
-          path: ./python_compile     
+        run: molecule test    
 
