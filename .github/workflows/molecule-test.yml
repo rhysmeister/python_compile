@@ -21,7 +21,7 @@ jobs:
           path: ./python_compile
 
       - name: Set up Python ${{ matrix.base_version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.base_version }}
 
