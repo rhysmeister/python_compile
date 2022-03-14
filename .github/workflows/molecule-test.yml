@@ -35,5 +35,5 @@ jobs:
         run: python --version && pip --version
 
       - name: Run molecule test
-        run: molecule test
+        run: molecule --debug test
 
