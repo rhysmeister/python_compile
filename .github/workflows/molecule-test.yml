@@ -1,0 +1,37 @@
+name: CI_roles
+on:
+  pull_request:
+  schedule:
+    - cron: "0 6 * * *"
+
+jobs:
+  molecule_test:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        base_python:
+          - "3.9"
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          path: ./python_compile
+
+      - name: Set up Python ${{ matrix.test_scenario.base_version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.test_scenario.base_version }}
+
+      - name: Uninstall existing ansible
+        run: sudo apt remove ansible
+
+      - name: Install requirements
+        run: pip install -r requirements.txt
+        with:
+          path: ./python_compile
+
+      - name: Run molecule test
+        run: molecule test
+        with:
+          path: ./python_compile     
+
