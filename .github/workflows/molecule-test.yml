@@ -25,23 +25,8 @@ jobs:
         with:
           python-version: ${{ matrix.base_python }}
 
-      - name: Uninstall existing ansible
-        run: sudo apt remove ansible
-
-      - name: Install required packages
-        run: sudo apt install python3-testresources
-
-      - name: Upgrade pip
-        run: sudo pip install pip --upgrade
-
-      - name: Install requirements
-        run: sudo pip install -r requirements.txt
-
-      - name: Debug
-        run: python --version && pip --version
-
       - name: Run molecule test
-        run: molecule --debug test
-        env:
-          ansible_python_interpreter: /opt/hostedtoolcache/Python/3.9.10/x64/python
+        uses: gofrolist/molecule-action@v2
+        with:
+          molecule_command: test
 
