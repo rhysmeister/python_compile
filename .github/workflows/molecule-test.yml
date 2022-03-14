@@ -28,11 +28,14 @@ jobs:
       - name: Uninstall existing ansible
         run: sudo apt remove ansible
 
+      - name: Upgrade pip
+        run: sudo pip install pip --upgrade
+
       - name: Install requirements
-        run: sudo pip3 install molecule[docker] docker requests
+        run: sudo pip install molecule[docker] docker
 
       - name: Debug
-        run: python3 --version && pip --version
+        run: python --version && pip --version
 
       - name: Run molecule test
         run: molecule --debug test
