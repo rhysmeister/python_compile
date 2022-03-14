@@ -12,13 +12,13 @@ click-help-colors==0.9.1
 commonmark==0.9.1
 cookiecutter==1.7.3
 cryptography==36.0.1
-docker==5.0.3
+docker==4.4.4
 enrich==1.2.7
 idna==3.3
 Jinja2==3.0.3
 jinja2-time==0.2.0
 MarkupSafe==2.1.0
-molecule==3.6.1
+molecule==3.5.2
 molecule-docker==1.1.0
 packaging==21.3
 paramiko==2.10.1
@@ -30,7 +30,6 @@ PyNaCl==1.5.0
 pyparsing==3.0.7
 python-dateutil==2.8.2
 python-slugify==6.1.1
-PyYAML==6.0
 requests==2.27.1
 rich==12.0.0
 six==1.16.0

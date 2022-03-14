@@ -1,0 +1,46 @@
+name: CI_roles
+on:
+  pull_request:
+  schedule:
+    - cron: "0 6 * * *"
+
+jobs:
+  molecule_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        base_python:
+          - "3.9"
+    defaults:
+      run:
+        working-directory: ./python_compile
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          path: ./python_compile
+
+      - name: Set up Python ${{ matrix.base_python }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.base_python }}
+
+      - name: Upgrade pip and install requirements
+        run: |
+          python3 -m venv ./venv
+          source venv/bin/activate
+          python3 -m pip install --upgrade pip
+          python3 -m pip install wheel
+          python3 -m pip install -r requirements.txt
+
+      - name: Debug
+        run: |
+          source venv/bin/activate 
+          python3 --version && pip --version
+          pip freeze
+
+      - name: Run molecule test
+        run: |
+          source venv/bin/activate 
+          molecule test
+
